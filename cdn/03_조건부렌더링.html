@@ -14,14 +14,84 @@
   <div id="root"></div>
 
   <script type="text/babel">
+    function greeting(props) {
+      const isLoggedIn = props.isLoggedIn;
+
+      if (isLoggedIn) {
+        return <h1>환영합니다!</h1>;
+      } else {
+        return <h1>로그인해주세요.</h1>;
+      }
+    }
+
     // {조건부 렌더링} + props
-    function Greeting(props) {
+    // 부모 컴포넌트
+    function Greeting() {
+      const isLoggedIn = false;
+
+      // if (isLoggedIn) {
+      //   return <h1>환영합니다!</h1>;
+      // } else {
+      //   return <h1>다시 입력해주세요.</h1>;
+      // }
+
       return (
+        <>
+          {/* 조건부 렌더링 */}
+          <h1>{isLoggedIn ? '환영합니다!' : '로그인해주세요.'}</h1>
+          <Greeting2 isLoggedIn={true} />
+          <Greeting3 isLoggedIn={true} />
+          <AlertBox hasAlert={true} />
+        </>
+      );
+    }
+
+    // 자식 컴포넌트
+    // 1. 조건 ? A : B 삼항 연산자
+    function Greeting2(props) {
+      return (
+        // 조건부 렌더링
         <h1>{props.isLoggedIn ? '환영합니다!' : '로그인해주세요.'}</h1>
       );
     }
+
+    // 2. 조건 && 요소 (조건이 true일 때만 렌더링)
+    function AlertBox(props) {
+      return (
+        <div>
+          <h1>공지사항</h1>
+          {/* 조건부 렌더링 */}
+          {props.hasAlert && <p>⚠️ 알림이 있습니다!</p>}
+        </div>
+      );
+    }
+
+    // 3. if 문 밖에서 조건 분기
+    function Greeting3(props) {
+      const isLoggedIn = props.isLoggedIn;
+
+      // 조건부 렌더링
+      if (isLoggedIn) {
+        return <h1>환영합니다!</h1>;
+      } else {
+        return <h1>로그인해주세요.</h1>;
+      }
+    }
+
+    // 4. 조건 결과를 변수에 저장 후 JSX에서 삽입(가독성이 좋다)
+    function Greeting4(props) {
+      let message;
+      if (props.isLoggedIn) {
+        message = <h1>환영합니다!</h1>;
+      } else {
+        message = <h1>로그인해주세요.</h1>;
+      }
+
+      return <div>{message}</div>;
+    }
+
     const root = ReactDOM.createRoot(document.querySelector('#root'));
-    root.render(<App7 />)
+    root.render(<Greeting />)
   </script>
 </body>
 
