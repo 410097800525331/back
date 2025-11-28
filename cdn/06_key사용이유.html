@@ -20,6 +20,10 @@
 
       const addItem = () => {
         // 리스트 앞에 추가 → 문제를 명확하게 보여줌
+        // items = ["사과", "바나나", "포도"]
+        // items = ["🍓 딸기", "사과", "바나나", "포도"]
+        // items = ["🍓 딸기", "🍓 딸기", "사과", "바나나", "포도"]
+        // items = ["🍓 딸기", "🍓 딸기", "🍓 딸기", "사과", "바나나", "포도"]
         setItems(["🍓 딸기", ...items]);
       };
 
@@ -30,7 +34,6 @@
 
           <ul>
             {items.map((item, index) => (
-              // ❌ key가 없음 → React가 항목을 제대로 식별하지 못함
               <li key={item}>
                 <input type="checkbox" /> {item}
               </li>
