@@ -1,4 +1,4 @@
-import './App.css'
+import BoxOfficeCard from './BoxOfficeCard.jsx';
 
 function App() {
 
