@@ -64,23 +64,79 @@ function Create(props) {
   return (
     <article>
       <h2>Create</h2>
-      <form onSubmit={e => {
-        e.preventDefault();
-        // e.target -> <form>
-        // e.target.title -> 폼의 name="title"
-        // e.target.body -> 폼의 name="body"
-        console.log(e.target.title.value);
-        const title = e.target.title.value;
-        const body = e.target.body.value;
-        props.onCreate(title, body);
-      }}>
-        <p><input type="text" name="title" placeholder="title" /></p>
-        <p><textarea name="body" placeholder="body"></textarea></p>
-        <p><input type="submit" value="Create" /></p>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          // e.target -> <form>
+          // e.target.title -> 폼의 name="title"
+          // e.target.body -> 폼의 name="body"
+          console.log(e.target.title.value);
+          const title = e.target.title.value;
+          const body = e.target.body.value;
+          props.onCreate(title, body);
+        }}
+      >
+        <p>
+          <input type="text" name="title" placeholder="title" />
+        </p>
+        <p>
+          <textarea name="body" placeholder="body"></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Create" />
+        </p>
       </form>
     </article>
   );
-}
+} // function Create(props)
+
+function Update(props) {
+  const [title, setTitle] = useState(props.title);
+  const [body, setBody] = useState(props.body);
+
+  return (
+    <article>
+      <h2>Update</h2>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(e.target.title.value);
+          const title = e.target.title.value;
+          const body = e.target.body.value;
+          props.onUpdate(title, body);
+        }}
+      >
+        <p>
+          <input
+            type="text"
+            name="title"
+            placeholder="title"
+            value={title}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setTitle(e.target.value);
+            }}
+          />
+        </p>
+        <p>
+          <textarea
+            name="body"
+            placeholder="body"
+            value={body}
+            /* HTML의 onchange는 값이 바뀌거나 마우스 포인터가 바깥쪽으로 빠져나갈 때 호출되지만, 리액트의 onChange는 값을 입력할 때마다 호출된다. */
+            onChange={(e) => {
+              console.log(e.target.value);
+              setBody(e.target.value);
+            }}
+          ></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Update" />
+        </p>
+      </form>
+    </article>
+  );
+} // function Update(props)
 
 // App 컴포넌트는 useState()로 지정한 변수 값이 변경되면 다시 실행된다.
 function App() {
@@ -104,6 +160,7 @@ function App() {
   // ];
 
   let content = null;
+  let contentControl = null;
   // CRUD(Create Read Update Delete)
 
   if (mode === "WELCOME") {
@@ -119,22 +176,76 @@ function App() {
       }
     }
     content = <Article title={title} body={body}></Article>;
+
+    contentControl = (
+      <li>
+        {/* 갱신(Update) 버튼 */}
+        <a
+          href={"/update/" + id}
+          onClick={(e) => {
+            e.preventDefault();
+            setMode("UPDATE");
+          }}
+        >
+          Update
+        </a>
+      </li>
+    );
+    console.log("contentControl", contentControl);
   } else if (mode === "CREATE") {
-    content = <Create onCreate={(title, body) => {
-      const newTopic = { id: nextId, title: title, body: body };
-      /* 
-          const newValue = [...value]
-          newValue 변경
-          setValue(newValue)
-      */
-      const newTopics = [...topics];
-      newTopics.push(newTopic);
-      setTopics(newTopics);
-      setMode('READ');
-      setId(nextId);
-      setNextId(nextId + 1);
-    }}></Create>;
-  }
+    content = (
+      <Create
+        onCreate={(title, body) => {
+          const newTopic = { id: nextId, title: title, body: body };
+          /* 
+    const newValue = [...value]
+    newValue 변경
+    setValue(newValue)
+*/
+          const newTopics = [...topics];
+          newTopics.push(newTopic);
+          setTopics(newTopics);
+          setMode("READ");
+          setId(nextId);
+          setNextId(nextId + 1);
+        }}
+      ></Create>
+    );
+
+    /* UPDATE = READ + CREATE */
+  } else if (mode === "UPDATE") {
+    let title,
+      body = null;
+
+    for (let i = 0; i < topics.length; i++) {
+      if (topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+
+    content = (
+      <Update
+        title={title}
+        body={body}
+        onUpdate={(title, body) => {
+          console.log("title=", title, "body=", body);
+
+          const newTopics = [...topics];
+          const updateTopic = { id: id, title: title, body: body };
+
+          for (let i = 0; i < newTopics.length; i++) {
+            if (newTopics[i].id === id) {
+              newTopics[i] = updateTopic;
+              break;
+            }
+          }
+          setTopics(newTopics);
+          setMode("READ");
+        }}
+      ></Update>
+    );
+  } // if end
 
   return (
     <div>
@@ -158,16 +269,21 @@ function App() {
       ></Nav>
       {/* 아티클 */}
       {content}
-      {/* 생성(Create) = 추가(Insert) 버튼 */}
-      <a
-        href="/create"
-        onClick={(e) => {
-          e.preventDefault();
-          setMode("CREATE");
-        }}
-      >
-        Create
-      </a>
+      <ul>
+        <li>
+          {/* 생성(Create) = 추가(Insert) 버튼 */}
+          <a
+            href="/create"
+            onClick={(e) => {
+              e.preventDefault();
+              setMode("CREATE");
+            }}
+          >
+            Create
+          </a>
+        </li>
+        {contentControl}
+      </ul>
     </div>
   );
 }
