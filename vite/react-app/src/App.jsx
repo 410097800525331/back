@@ -178,18 +178,33 @@ function App() {
     content = <Article title={title} body={body}></Article>;
 
     contentControl = (
-      <li>
-        {/* 갱신(Update) 버튼 */}
-        <a
-          href={"/update/" + id}
-          onClick={(e) => {
-            e.preventDefault();
-            setMode("UPDATE");
-          }}
-        >
-          Update
-        </a>
-      </li>
+      <>
+        <li>
+          {/* 갱신(Update) 버튼 */}
+          <a
+            href={"/update/" + id}
+            onClick={(e) => {
+              e.preventDefault();
+              setMode("UPDATE");
+            }}
+          >
+            Update
+          </a>
+        </li>
+        <li>
+          <input type="button" value={"Delete"} onClick={()=>{
+            const newTopic = [];
+            for (let i = 0; i < topics.length; i++) {
+              if (topics[i].id !== id) {
+                // 선택한 id와 같지 않은 항목만 배열에 추가
+                newTopic.push(topics[i]);
+              }
+              setTopics(newTopic);
+              setMode('WELCOME');
+            }
+          }} />
+        </li>
+      </>
     );
     console.log("contentControl", contentControl);
   } else if (mode === "CREATE") {
