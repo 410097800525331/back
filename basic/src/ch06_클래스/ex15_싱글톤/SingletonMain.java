@@ -3,11 +3,11 @@ package ch06_클래스.ex15_싱글톤;
 public class SingletonMain {
 
 	public static void main(String[] args) {
-		/*
- 		Singleton obj1 = new Singleton(); //컴파일 에러
- 		Singleton obj2 = new Singleton(); //컴파일 에러
-		 */
-		
+
+		// The constructor Singleton() is not visible
+// 		Singleton obj1 = new Singleton(); //컴파일 에러
+// 		Singleton obj2 = new Singleton(); //컴파일 에러
+ 		
 		//정적 메소드를 호출해서 싱글톤 객체 얻음
 		Singleton obj1 = Singleton.getInstance();
 		Singleton obj2 = Singleton.getInstance();

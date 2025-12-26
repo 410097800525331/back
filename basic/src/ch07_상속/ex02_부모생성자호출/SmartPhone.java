@@ -19,23 +19,27 @@ package ch07_상속.ex02_부모생성자호출;
  */
 public class SmartPhone extends Phone {
 	
-	// 생성자
+	// 기본 생성자
 	SmartPhone() {
 		super();
-		System.out.println("Phone 기본 생성자가 실행됨!");
+		System.out.println("SmartPhone 기본 생성자가 실행됨!");
 	}
 	
 	// 매개변수가 있는 생성자
-	SmartPhone(String model, String color) {
+	SmartPhone(String model, String color){
 		// super()
-		// - 없을 경우 자동 생성된다.
 		// - 부모 생성자를 호출한다.
+		// - 없을 경우 자동 생성된다.
 		// - 직접 기록할 경우 생성자의 첫 줄에 기록한다.
 		super(model, color);
 		this.model = model;
 		this.color = color;
+		// Constructor call must be the first statement in a constructor
 		// this.필드 = 매개변수
 		// Phone 클래스의 필드를 상속 받아 사용!
-		System.out.println("SmartPhone 생성자가 실행됨!");
+		System.out.println("SmartPhone 매개변수 생성자가 실행됨!");
 	}
+
+
+	
 }
