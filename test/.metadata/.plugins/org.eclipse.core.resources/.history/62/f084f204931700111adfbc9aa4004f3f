@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="board.ex05.read">
+        <property name="context-root" value="board.ex05.read"/>
+    </wb-module>
+</project-modules>

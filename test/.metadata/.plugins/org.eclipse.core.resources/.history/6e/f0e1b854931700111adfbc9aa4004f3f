@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="board.ex08.dekete">
+        <property name="context-root" value="board.ex08.dekete"/>
+        <property name="java-output-path" value="/board.ex08.dekete/build/classes"/>
+    </wb-module>
+</project-modules>

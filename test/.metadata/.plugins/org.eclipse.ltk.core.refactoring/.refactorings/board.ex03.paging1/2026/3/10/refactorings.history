@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 packages to &apos;board.ex03.paging/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;board.ex03.paging1&apos;&#x0D;&#x0A;- Destination element: &apos;board.ex03.paging/src/main/java&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     board.ex03.paging1/src/main/java/util&#x0D;&#x0A;     board.ex03.paging1/src/main/java/dao&#x0D;&#x0A;     board.ex03.paging1/src/main/java/controller&#x0D;&#x0A;     board.ex03.paging1/src/main/java/dto" description="Copy packages" destination="=board.ex03.paging/src\/main\/java" element1="/src\/main\/java&lt;util" element2="/src\/main\/java&lt;dao" element3="/src\/main\/java&lt;controller" element4="/src\/main\/java&lt;dto" flags="589830" fragments="4" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1772605486450" version="1.0"/>
+</session>
