@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+#step3 {
+	padding: 100px 0;
+}
+
+#step3 .logo {
+    text-align: center;
+    margin: 40px 0;
+}
+
+#step3 .logo h1 {
+    font-size: 42px;
+    color: #008938;
+    letter-spacing: 2px;
+}
+
+#step3 .logo p {
+    color: #fdb913;
+    font-weight: bold;
+}
+
+#step3 .step ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    border-bottom: 1px solid #ddd;
+    padding: 0;
+}
+
+#step3 .step li {
+    margin: 0 20px;
+    padding-bottom: 10px;
+    color: #999;
+}
+
+#step3 .step .active {
+    color: #008938;
+    border-bottom: 2px solid #008938;
+}
+
+#step3 .container {
+    width: 800px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+#step3 .complete-box {
+    padding: 60px 40px;
+}
+
+#step3 .icon {
+    font-size: 64px;
+    margin-bottom: 30px;
+}
+
+#step3 .complete-box h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+#step3 .complete-box h2 span {
+    color: #008938;
+}
+
+#step3 .desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+#step3 .btn-group a {
+    display: inline-block;
+    width: 220px;
+    height: 48px;
+    line-height: 48px;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    font-size: 15px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+#benefitBtn {
+    background: #008938;
+    color: #fff;
+}
+
+#mainBtn {
+    background: #f5f5f5;
+    color: #333;
+}
