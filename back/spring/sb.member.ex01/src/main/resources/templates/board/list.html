@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<!--/* src/main/resources/static/경로/파일명 */-->
+<!--/* <link rel="stylesheet" th:href="@{/경로/파일명}"> */-->
+<link rel="stylesheet" th:href="@{/css/board.css}">
+</head>
+<body>
+<h1>
+    <a th:href="@{/}"><img th:src="@{/assets/images/logo_w.png}" alt="써브웨이"></a>
+</h1>
+<h2>써브웨이 자유게시판</h2>
+<p>자유롭게 글을 올리고, 정보를 공유할 수 있는 공간입니다.</p>
+<table>
+    <thead>
+        <tr>
+            <th>순번</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+        </tr>
+    </thead>
+    <tbody>
+	    <!--/* <c:forEach var="bb" items="${list}"> */-->
+	    <!--/* th:each="bb : ${list}" */-->
+        <tr th:each="bb : ${list}">
+            <td th:text="${bb.num}">순번</td>
+            <td th:text="${bb.subject}">제목</td>
+            <td th:text="${bb.userid}">작성자</td>
+            <td th:text="${bb.regdate}">작성일</td>
+            <td th:text="${bb.readcount}">조회수</td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+total records : <span th:text="${count}">0</span>
+
+</body>
+</html>
