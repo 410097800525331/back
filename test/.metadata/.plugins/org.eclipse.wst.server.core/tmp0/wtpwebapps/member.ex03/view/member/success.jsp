@@ -1,8 +1,0 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<body>
-    <h3>회원가입 성공</h3>
-    <a href="../index.jsp">회원가입 페이지으로 돌아가기</a>
-</body>
-</html>
