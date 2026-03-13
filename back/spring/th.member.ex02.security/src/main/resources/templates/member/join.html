@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>써브웨이</title>
     <link rel="stylesheet" th:href="@{/css/member.css}">
 
-		<script th:if="${param.duplicate != null}">
-		    alert("이미 사용 중인 아이디입니다.");
-		</script>
-		
-		<script th:if="${param.error != null}">
-		    alert("회원가입 처리 중 오류가 발생했습니다.");
-		</script>
+    <script th:if="${param.duplicate != null}">
+        alert("이미 사용 중인 아이디입니다.");
+    </script>
+
+    <script th:if="${param.error != null}">
+        alert("회원가입 처리 중 오류가 발생했습니다.");
+    </script>
 </head>
 
 <body>
+    <div th:replace="~{fragments/header :: header}"></div>
     <section>
         <h2>안녕하세요. Subway 회원가입 페이지 입니다.</h2>
         <p>회원정보를 입력해주세요.</p>
-        
+
         <form name="regFrm" method="post" th:action="@{/member/join}">
             <table class="form-table">
                 <tr>
@@ -108,4 +110,5 @@
     <script src="https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script th:src="@{/js/join.js}"></script>
 </body>
+
 </html>
